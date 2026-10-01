@@ -9,11 +9,15 @@
 </head>
 <body>
 
+  <!-- primeiro item do teclado: pula o menu e vai direto ao conteudo -->
+  <a class="pular-para-conteudo" href="#app">Pular para o conteúdo</a>
+
   <header>
     <h1>Minha ONG</h1>
-    <nav>
-      <button type="button" class="botao-hamburguer">
-        <span>&#9776;</span> Menu
+    <nav aria-label="Menu principal">
+      <button type="button" class="botao-hamburguer"
+              aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">&#9776;</span> Menu
       </button>
 
       <ul class="menu" id="menu-principal">
@@ -32,11 +36,15 @@
     </nav>
   </header>
 
+  <!-- avisa o leitor de tela qual pagina foi aberta, sem aparecer na tela -->
+  <p class="apenas-leitor-tela" id="aviso-pagina" role="status" aria-live="polite"></p>
+
   <!-- ÚNICO ponto da página que muda: o JavaScript escreve aqui dentro -->
-  <main id="app"></main>
+  <main id="app" tabindex="-1"></main>
 
   <!-- modal fixo, aberto e fechado pelo JavaScript -->
-  <div class="modal" id="modal-termos">
+  <div class="modal" id="modal-termos" role="dialog" aria-modal="true"
+       aria-labelledby="titulo-modal" aria-hidden="true">
     <div class="modal-caixa">
       <h3 id="titulo-modal">Termos de participação</h3>
       <p>Ao se cadastrar, você autoriza a Minha ONG a entrar em contato por e-mail
@@ -47,7 +55,7 @@
   </div>
 
   <!-- toast fixo, usado para avisar o resultado das ações -->
-  <div class="toast" id="toast-enviado">
+  <div class="toast" id="toast-enviado" role="status" aria-live="polite">
     <p></p>
     <a class="toast-fechar" href="#" id="fechar-toast">Fechar</a>
   </div>
