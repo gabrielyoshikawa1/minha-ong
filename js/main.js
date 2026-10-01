@@ -43,6 +43,9 @@ const App = {
     }
   },
 
+  // guarda o temporizador do aviso, para um não cortar o outro
+  timerToast: null,
+
   // mostra um aviso rápido por 4 segundos ("sucesso" ou "erro")
   mostrarToast(mensagem, tipo) {
     const toast = document.getElementById("toast-enviado");
@@ -50,7 +53,10 @@ const App = {
     toast.classList.toggle("toast-erro", tipo === "erro");
     toast.classList.add("aberto");
 
-    setTimeout(function () {
+    // cancela a contagem do aviso anterior antes de começar a nova
+    clearTimeout(App.timerToast);
+
+    App.timerToast = setTimeout(function () {
       toast.classList.remove("aberto");
     }, 4000);
   },
