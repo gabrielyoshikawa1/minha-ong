@@ -1,0 +1,5 @@
+node_modules/
+build-report.txt
+.DS_Store
+Thumbs.db
+_para-depois/

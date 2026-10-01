@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha ONG</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Minha ONG</h1>
+    <nav>
+      <button type="button" class="botao-hamburguer">
+        <span>&#9776;</span> Menu
+      </button>
+
+      <ul class="menu" id="menu-principal">
+        <li><a href="#/inicio">Início</a></li>
+
+        <li class="tem-submenu">
+          <a href="#/projetos">Projetos</a>
+          <ul class="submenu">
+            <li><a href="#/projetos">Frentes de Atuação</a></li>
+            <li><a href="#/campanhas">Campanhas de Doação</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#/cadastro">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ÚNICO ponto da página que muda: o JavaScript escreve aqui dentro -->
+  <main id="app"></main>
+
+  <!-- modal fixo, aberto e fechado pelo JavaScript -->
+  <div class="modal" id="modal-termos">
+    <div class="modal-caixa">
+      <h3 id="titulo-modal">Termos de participação</h3>
+      <p>Ao se cadastrar, você autoriza a Minha ONG a entrar em contato por e-mail
+      ou telefone para falar sobre ações de voluntariado e campanhas de doação.</p>
+      <p>Você pode pedir a exclusão dos seus dados a qualquer momento.</p>
+      <a class="modal-fechar" href="#" id="fechar-modal">Fechar</a>
+    </div>
+  </div>
+
+  <!-- toast fixo, usado para avisar o resultado das ações -->
+  <div class="toast" id="toast-enviado">
+    <p></p>
+    <a class="toast-fechar" href="#" id="fechar-toast">Fechar</a>
+  </div>
+
+  <footer>
+    <p>Minha ONG - contato@minhaong.org.br - (11) 1234-5678</p>
+    <p><small>&copy; 2026 Minha ONG. Seus dados são tratados conforme a LGPD.</small></p>
+  </footer>
+
+  <!-- biblioteca externa: Day.js (formatação e comparação de datas) -->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"></script>
+
+  <!-- módulos carregados na ordem: datas -> dados -> templates -> apoio -> router -> main -->
+  <script src="../js/modules/datas.js"></script>
+  <script src="../js/modules/dados.js"></script>
+  <script src="../js/modules/templates.js"></script>
+  <script src="../js/modules/storage.js"></script>
+  <script src="../js/modules/validacao.js"></script>
+  <script src="../js/modules/router.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

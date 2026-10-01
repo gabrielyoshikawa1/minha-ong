@@ -1,0 +1,652 @@
+/* =========================================================
+   DESIGN SYSTEM - Minha ONG
+   Variáveis de cores, tipografia e espaçamentos
+   ========================================================= */
+
+:root {
+
+  /* o site tem paleta própria para o modo claro e para o modo escuro */
+  color-scheme: light dark;
+
+  /* ---------- CORES PRIMÁRIAS ---------- */
+  --cor-primaria: #0B4F6C;         /* azul escuro - cabeçalho, títulos */
+  --cor-primaria-clara: #1B7FA8;   /* azul médio - links e destaques */
+
+  /* ---------- CORES SECUNDÁRIAS ---------- */
+  --cor-secundaria: #E8871E;       /* laranja - botões de ação (doar/voluntariar) */
+  --cor-secundaria-escura: #8A4B06;/* laranja escuro - texto sobre fundo claro */
+
+  /* ---------- CORES DE APOIO ---------- */
+  --cor-sucesso: #1E6B33;          /* verde - campo preenchido corretamente */
+  --cor-erro: #B3261E;             /* vermelho - erro de validação */
+
+  /* ---------- TONS NEUTROS ---------- */
+  --cor-texto: #1F2933;            /* cinza quase preto - texto principal */
+  --cor-texto-suave: #52606D;      /* cinza médio - textos secundários */
+  --cor-borda: #D9E2EC;            /* cinza claro - bordas e divisórias */
+  --cor-fundo-alt: #F5F7FA;        /* cinza clarinho - fundo de seções */
+  --cor-fundo: #FFFFFF;            /* branco - fundo principal */
+  --cor-fundo-erro: #FDF2F2;       /* rosa claro - fundo do campo inválido */
+
+  /* ---------- COR DOS TÍTULOS E DO CABEÇALHO ---------- */
+  /* separadas porque no modo escuro elas deixam de ser a mesma cor */
+  --cor-titulo: #0B4F6C;           /* azul escuro - h1, h2 e links de destaque */
+  --cor-cabecalho-texto: #FFFFFF;  /* branco - texto sobre o azul do cabeçalho */
+  --cor-texto-destaque: #1F2933;   /* cinza escuro - texto sobre o laranja;
+                                      continua escuro nos dois modos, porque o
+                                      laranja é claro tanto de dia quanto de noite */
+
+  /* ---------- TIPOGRAFIA ---------- */
+  --fonte-principal: Arial, Helvetica, sans-serif;
+
+  /* escala modular de razão 1,25 a partir de 16px */
+  --fs-pequeno: 0.8rem;    /* 12,8px - créditos, avisos */
+  --fs-base: 1rem;         /* 16px   - texto comum */
+  --fs-medio: 1.25rem;     /* 20px   - subtítulos (h3) */
+  --fs-grande: 1.563rem;   /* 25px   - títulos de seção (h2) */
+  --fs-titulo: 1.953rem;   /* 31px   - título principal (h1) */
+
+  /* ---------- ESPAÇAMENTOS (escala modular de 8px) ---------- */
+  --esp-1: 0.5rem;   /*  8px */
+  --esp-2: 1rem;     /* 16px */
+  --esp-3: 1.5rem;   /* 24px */
+  --esp-4: 2rem;     /* 32px */
+  --esp-5: 3rem;     /* 48px */
+}
+
+/* =========================================================
+   APLICAÇÃO DAS VARIÁVEIS
+   ========================================================= */
+
+html {
+  background-color: var(--cor-fundo);
+}
+
+body {
+  font-family: var(--fonte-principal);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--fs-titulo);
+  color: var(--cor-titulo);
+}
+
+h2 {
+  font-size: var(--fs-grande);
+  color: var(--cor-titulo);
+}
+
+h3 {
+  font-size: var(--fs-medio);
+  color: var(--cor-texto);
+}
+
+small {
+  font-size: var(--fs-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+header {
+  background-color: var(--cor-primaria);
+  padding: var(--esp-3);
+}
+
+header h1 {
+  color: var(--cor-cabecalho-texto);
+  margin: 0 0 var(--esp-2) 0;
+}
+
+nav a {
+  color: var(--cor-cabecalho-texto);
+  text-decoration: none;
+  margin-right: var(--esp-2);
+}
+
+section {
+  padding: var(--esp-4);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+article {
+  background-color: var(--cor-fundo-alt);
+  padding: var(--esp-3);
+  margin-bottom: var(--esp-2);
+  border: 1px solid var(--cor-borda);
+}
+
+footer {
+  background-color: var(--cor-fundo-alt);
+  padding: var(--esp-4);
+}
+
+/* =========================================================
+   LAYOUT - GRID DE 12 COLUNAS
+   ========================================================= */
+
+/* o main centraliza o conteúdo e limita a largura máxima */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* cada section vira uma grade de 12 colunas */
+section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--esp-3);
+}
+
+/* títulos, textos e imagens ocupam a largura toda (12 colunas) */
+section > h2,
+section > p,
+section > img,
+section > picture,
+section > ul,
+section > a,
+section > form {
+  grid-column: 1 / -1;
+}
+
+/* o picture é inline por padrão; como bloco ele ocupa a largura toda */
+picture {
+  display: block;
+}
+
+/* no celular, cada card ocupa as 12 colunas (um embaixo do outro) */
+article {
+  grid-column: span 12;
+  margin-bottom: 0;
+}
+
+/* o formulário também usa grade interna de 12 colunas */
+form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--esp-2);
+}
+
+fieldset {
+  grid-column: span 12;
+  border: 1px solid var(--cor-borda);
+  padding: var(--esp-3);
+}
+
+/* =========================================================
+   FLEXBOX - alinhamentos internos
+   ========================================================= */
+
+/* cabeçalho: nome da ONG e menu empilhados com espaçamento uniforme */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+}
+
+/* menu: links em linha, com quebra automática em telas pequenas */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+/* cards: conteúdo em coluna, com o texto distribuído dentro do card */
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--esp-1);
+}
+
+/* grupos do formulário: rótulo e campo um abaixo do outro */
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+/* rodapé: informações de contato empilhadas */
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+/* =========================================================
+   BREAKPOINTS (5 pontos de quebra)
+   ========================================================= */
+
+/* 1) 480px - celulares maiores: mais respiro nas laterais */
+@media (min-width: 480px) {
+  section {
+    padding: var(--esp-4) var(--esp-4);
+  }
+}
+
+/* 2) 768px - tablets: cards em 2 colunas (6 + 6) */
+@media (min-width: 768px) {
+  article {
+    grid-column: span 6;
+  }
+
+  fieldset {
+    grid-column: span 6;
+  }
+}
+
+/* 3) 1024px - notebooks: cards em 3 colunas (4 + 4 + 4) */
+@media (min-width: 1024px) {
+  article {
+    grid-column: span 4;
+  }
+
+  section {
+    padding: var(--esp-5) var(--esp-4);
+  }
+}
+
+/* 4) 1280px - monitores: texto principal não ocupa a largura toda */
+@media (min-width: 1280px) {
+  /* o parágrafo ocupa a linha inteira, mas o texto fica limitado a uma
+     largura de leitura confortável. Antes ele ocupava só 8 colunas e o
+     primeiro card subia para o espaço que sobrava, quebrando o alinhamento. */
+  section > p:not(.alerta) {
+    grid-column: 1 / -1;
+    max-width: 70ch;
+  }
+}
+
+/* 5) 1600px - telas panorâmicas: tipografia e espaços maiores */
+@media (min-width: 1600px) {
+  :root {
+    --fs-base: 1.125rem;
+  }
+
+  main {
+    max-width: 1400px;
+  }
+}
+
+/* botão de envio do formulário */
+button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-destaque);
+  border: none;
+  padding: var(--esp-2) var(--esp-4);
+  font-size: var(--fs-base);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =========================================================
+   MENU RESPONSIVO - hambúrguer no celular, dropdown no desktop
+   ========================================================= */
+
+/* botão hambúrguer: visível apenas no celular */
+.botao-hamburguer {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--cor-cabecalho-texto);
+  font-size: var(--fs-medio);
+  cursor: pointer;
+  padding: var(--esp-1) 0;
+}
+
+/* lista do menu: escondida no celular até o botão ser clicado */
+.menu {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  gap: var(--esp-1);
+  width: 100%;
+}
+
+/* quando o botão é acionado, o JavaScript liga a classe e a lista aparece */
+.menu.aberto {
+  display: flex;
+}
+
+.menu a {
+  display: block;
+  color: var(--cor-cabecalho-texto);
+  text-decoration: none;
+  padding: var(--esp-1) 0;
+}
+
+/* efeito ao passar o mouse */
+.menu a:hover,
+.menu a:focus {
+  color: var(--cor-secundaria);
+  text-decoration: underline;
+}
+
+/* submenu: no celular fica sempre visível, apenas recuado */
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding-left: var(--esp-3);
+}
+
+/* a partir de 768px o menu vira horizontal e o hambúrguer some */
+@media (min-width: 768px) {
+  .botao-hamburguer {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--esp-3);
+    width: auto;
+  }
+
+  .tem-submenu {
+    position: relative;
+  }
+
+  /* submenu escondido por padrão, com transição suave */
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--cor-primaria);
+    padding: var(--esp-2);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* aparece ao passar o mouse ou ao focar pelo teclado */
+  .tem-submenu:hover .submenu,
+  .tem-submenu:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* =========================================================
+   ESTADOS INTERATIVOS DOS BOTÕES
+   ========================================================= */
+
+button {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+/* mouse por cima: escurece o fundo e ganha sombra */
+button:hover {
+  background-color: var(--cor-secundaria-escura);
+  color: var(--cor-fundo);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* momento do clique: afunda levemente */
+button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* botão desativado: cinza e sem cursor de clique */
+button:disabled {
+  background-color: var(--cor-borda);
+  color: var(--cor-texto-suave);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================================================
+   VALIDAÇÃO VISUAL DOS FORMULÁRIOS
+   ========================================================= */
+
+input {
+  padding: var(--esp-1);
+  border: 2px solid var(--cor-borda);
+  font-size: var(--fs-base);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* campo em foco: borda azul e leve brilho */
+input:focus {
+  outline: none;
+  border-color: var(--cor-titulo);
+  box-shadow: 0 0 0 3px rgba(11, 79, 108, 0.2);
+}
+
+/* preenchido corretamente: borda verde */
+input:user-valid {
+  border-color: var(--cor-sucesso);
+}
+
+/* preenchido de forma errada: borda vermelha e fundo rosado */
+input:user-invalid {
+  border-color: var(--cor-erro);
+  background-color: var(--cor-fundo-erro);
+}
+
+/* =========================================================
+   COMPONENTES DE FEEDBACK
+   badges, alertas, modal e toast
+   ========================================================= */
+
+/* --------- BADGES (etiquetas de categoria) --------- */
+.badge {
+  display: inline-block;
+  padding: 2px var(--esp-1);
+  font-size: var(--fs-pequeno);
+  font-weight: bold;
+  border-radius: 12px;
+  vertical-align: middle;
+}
+
+.badge-ativo {
+  background-color: var(--cor-sucesso);
+  color: var(--cor-fundo);
+}
+
+.badge-urgente {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-destaque);
+}
+
+.badge-encerrado {
+  background-color: var(--cor-borda);
+  color: var(--cor-texto-suave);
+}
+
+/* --------- ALERTAS (caixas de aviso) --------- */
+.alerta {
+  grid-column: 1 / -1;
+  padding: var(--esp-2);
+  border-left: 5px solid var(--cor-primaria);
+  background-color: var(--cor-fundo-alt);
+}
+
+.alerta-info {
+  border-left-color: var(--cor-primaria);
+}
+
+.alerta-sucesso {
+  border-left-color: var(--cor-sucesso);
+}
+
+.alerta-erro {
+  border-left-color: var(--cor-erro);
+}
+
+/* --------- MODAL (janela sobre a página) --------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* a janela aparece quando o JavaScript adiciona a classe .aberto */
+.modal.aberto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-caixa {
+  background-color: var(--cor-fundo);
+  padding: var(--esp-4);
+  max-width: 500px;
+  width: 90%;
+  border-top: 6px solid var(--cor-primaria);
+}
+
+.modal-fechar,
+.toast-fechar {
+  display: inline-block;
+  margin-top: var(--esp-2);
+  color: var(--cor-titulo);
+  font-weight: bold;
+}
+
+/* --------- TOAST (aviso rápido no canto) --------- */
+.toast {
+  position: fixed;
+  right: var(--esp-3);
+  bottom: var(--esp-3);
+  max-width: 320px;
+  padding: var(--esp-2) var(--esp-3);
+  background-color: var(--cor-sucesso);
+  color: var(--cor-fundo);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+
+/* o aviso aparece quando o JavaScript adiciona a classe .aberto */
+.toast.aberto {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.toast p {
+  margin: 0;
+}
+
+.toast-fechar {
+  color: var(--cor-fundo);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   NOVOS ESTILOS DA EXPERIÊNCIA PRÁTICA III (JavaScript)
+   ========================================================= */
+
+/* --------- LINK DE AÇÃO (chamada para o cadastro) --------- */
+.link-acao {
+  display: inline-block;
+  justify-self: start;
+  padding: var(--esp-1) var(--esp-3);
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-destaque);
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link-acao:hover {
+  background-color: var(--cor-secundaria-escura);
+  color: var(--cor-fundo);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* --------- LINK DA PÁGINA ABERTA NO MENU --------- */
+.menu a.ativo {
+  color: var(--cor-secundaria);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* --------- MENSAGENS DE ERRO DO FORMULÁRIO --------- */
+.msg-erro {
+  grid-column: 1 / -1;
+  min-height: 1.2em;
+  color: var(--cor-erro);
+  font-size: var(--fs-pequeno);
+}
+
+/* estados dos campos aplicados pelo JavaScript */
+.campo-valido {
+  border-color: var(--cor-sucesso);
+}
+
+.campo-invalido {
+  border-color: var(--cor-erro);
+  background-color: var(--cor-fundo-erro);
+}
+
+/* --------- LISTA DE CADASTROS SALVOS NO LOCALSTORAGE --------- */
+.lista-cadastros {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.item-cadastro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-1);
+  padding: var(--esp-2);
+  background-color: var(--cor-fundo-alt);
+  border: 1px solid var(--cor-borda);
+}
+
+.item-cadastro span {
+  color: var(--cor-texto-suave);
+  font-size: var(--fs-pequeno);
+}
+
+.botao-remover {
+  padding: var(--esp-1) var(--esp-2);
+  background-color: var(--cor-fundo);
+  color: var(--cor-erro);
+  border: 1px solid var(--cor-erro);
+  cursor: pointer;
+}
+
+.botao-remover:hover {
+  background-color: var(--cor-erro);
+  color: var(--cor-fundo);
+}
+
+#lista-cadastros {
+  grid-column: 1 / -1;
+}
+
+/* toast em versão de erro */
+.toast.toast-erro {
+  background-color: var(--cor-erro);
+}

@@ -1,0 +1,32 @@
+/* =========================================================
+   RESET - Minha ONG
+   Zera as diferenças de estilo entre os navegadores.
+   É carregado ANTES do style.css para não sobrescrever o design.
+   ========================================================= */
+
+/* todo elemento passa a contar borda e padding dentro da largura */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* tira a margem que o navegador coloca por padrão no corpo da página */
+body {
+  margin: 0;
+}
+
+/* imagens nunca estouram a largura do espaço onde estão */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* campos e botões herdam a fonte do site em vez da fonte do sistema */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
