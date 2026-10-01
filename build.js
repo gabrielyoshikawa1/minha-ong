@@ -36,7 +36,9 @@ const ARQUIVOS_CSS = [
 /* ---------- funcoes de apoio ---------- */
 
 function ler(relativo) {
-  return fs.readFileSync(path.join(RAIZ, relativo), "utf8");
+  // o Windows grava as quebras de linha como \r\n; padronizo para \n
+  // para que as buscas de texto deste arquivo funcionem nos dois sistemas
+  return fs.readFileSync(path.join(RAIZ, relativo), "utf8").replace(/\r\n/g, "\n");
 }
 
 function juntar(lista) {
