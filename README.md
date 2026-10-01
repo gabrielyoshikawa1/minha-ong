@@ -4,7 +4,7 @@ Site institucional de uma ONG fictícia, construído como Single Page Applicatio
 (SPA) com HTML5, CSS3 e JavaScript puro, sem framework.
 
 O projeto foi desenvolvido ao longo das Experiências Práticas da disciplina de
-Desenvolvimento Front-end, da Universidade Cidade de São Paulo (UNICID).
+Desenvolvimento Front-end, da Universidade Cruzeiro do Sul (UNICID).
 
 🔗 **Site publicado:** https://gabrielyoshikawa1.github.io/minha-ong/
 
